@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Aplicativo PJI3G54APP</title>
+
+</head>
+<body>
+<div class="container-fluid col-12">
+  <div class="jumbotron">
+    <div class="col-10 m-auto pb-3 text-center">
+        <h2>CADASTRO DE PRODUTORES E RECICLADORES DE ÓLEO COMESTÍVEL USADO</h2>
+        <h3>Página de Consulta de Estabelecimentos</h3></div>
+      <div class="m-auto pt-4 pb-4 text-center ">
+        <h4>Clique em CADASTRAR para inserir um novo estabelecimento</h4>
+    </div>
+    <div class="col-8 m-auto pt-3 pb-3 text-center">
+        <a href="/form" class="btn btn-success">CADASTRAR</a> <!-- clicando em ADICIONAR, chama a página 'form' -->
+    </div>
+    <div>
+        <form method="get">
+            <div class="container-fluid col-10 pt-4 pb-3 text-center"><h2>Faça a busca por estabelecimento e por município</h2></div>
+            <div class=" container-fluid col-3 m-auto text-left">
+            <input type="radio" id="produtor" name="inputTipo" value="True">
+            <label for="produtor">Busca Restaurantes e Similares</label><br>
+            <input type="radio" id="reciclador" name="inputTipo" value="False">
+            <label for="reciclador">Busca Recicladores e Similares</label><br>
+            <input type="radio" id="todos" name="inputTipo" value=None>
+            <label for="todos">Busca Todos</label><br>
+            </div>
+        <div class="col-6 m-auto pt-3 pb-2 text-center"> <!--Barra de busca-->
+            <div class="text-center"><label>Busca por Cidade</label></div>
+            <input type="text" id="search" name="search" class="form-control" placeholder="Entre com a Cidade..."><br>
+        </div>
+        </form>
+    </div>
+    <div class="container-fluid col-12 m-auto pt-3 pb-3 text-center">
+        <table class="table table-striped">
+          <thead class="thead-light">
+            <tr>
+              <!--<th scope="col">ID</th>-->
+                <th scope="col"><label>Estabelecimento</label></th>
+              <th scope="col"><label>Endereço</label></th>
+              <th scope="col"><label>Número</label></th>
+              <th scope="col"><label>Cidade</label></th>
+              <th scope="col"><label>Estado</label></th>
+              <th scope="col"><label>Ações</label></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for dbs in db %}
+            <tr>
+                <!--Os nomes das variáveis são exatamente os mesmos que estão no Banco de Dados, p ex.: dbs.Req_nome -->
+                <!--<th>{{dbs.id}}</th>--> <!--Esta variável 'id' vem do Banco de Dados - no caso, SQlite-->
+                <td>{{dbs.inputEmpresa}}</td>
+                <td>{{dbs.inputAddress}}</td>
+                <td>{{dbs.inputNumber}}</td>
+                <td>{{dbs.inputCity}}</td>
+                <td>{{dbs.inputEstado}}</td>
+                <td>
+                    <a href="/view/{{dbs.id}}" class="btn btn-info" ><label>Ver</label></a>
+                    <a href="/edit/{{dbs.id}}" class="btn btn-primary"><label>Editar</label></a>
+                    <a href="/delete/{{dbs.id}}" class="btn btn-danger btnDel"><label>Deletar</label></a>
+                </td>
+            </tr>
+                {% endfor %}
+          </tbody>
+        </table>
+    </div>
+
+    <div class="container-fluid row d-flex justify-content-center">
+        <div class="pagination" > <!-- Cria paginação do DB na página inicial-->
+            {% if db.has_previous %} <!--Verifica se existe registro anterior-->
+                <a href="?page={{db.previous_page_number}}"><label><-Anterior__</label></a> <!--Se existe página anterior, referencia seu caminho no link 'page'-->
+            {% endif %}
+
+            {{db.number}} <!-- mostra o número da página atual -->
+
+            {% if db.has_next %} <!-- Se existe página posterior, referencia seu caminho no link 'page'-->
+                <a href="?page={{db.next_page_number}}"><label>__Posterior-></label></a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% load static %}
+    <script src="{% static 'javascript.js' %}"></script>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visualizar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container col-12">
+  <div class="jumbotron">
+<div class="col-8 m-auto pt-2 pb-2 text-center">
+      <h1>Visualização detalhada</h1>
+  </div>
+
+  <div class="col-8 m-auto pt-3 pb-2 text-center">
+      <a href="/" class="btn btn-info">Voltar</a>
+  </div>
+
+  <div class="col-12 m-auto pt-4 pb-2 text-center">
+      <table class="table table-striped">
+          <thead class="thead-light">
+          <tr>
+              <td>
+                  <strong>ID: </strong>{{db.id}}</td>
+              <td>
+                  <strong>Estabelecimento: </strong>{{db.inputEmpresa}}</td>
+              <td>
+                  <strong>CNPJ: </strong>{{db.inputCNPJ}}</td>
+              <td>
+                  <strong>Email: </strong>{{db.inputEmail}}</td>
+          </tr>
+          <tr>
+              <td>
+                  <strong>Telefone: </strong>{{db.inputTel}}</td>
+              <td>
+                  <strong>Celular: </strong>{{db.inputCel}}</td>
+          </tr>
+          <tr>
+              <td>
+                  <strong>Endereço: </strong>{{db.inputAddress}}</td>
+              <td>
+                  <strong>Número: </strong>{{db.inputNumber}}</td>
+              <td>
+                  <strong>Complemento: </strong>{{db.inputAddress2}}</td>
+          </tr>
+          <tr>
+              <td>
+                  <strong>CEP: </strong>{{db.inputCEP}}</td>
+              <td>
+                  <strong>Cidade: </strong>{{db.inputCity}}</td>
+              <td>
+                  <strong>Estado: </strong>{{db.inputEstado}}<br></td>
+          </tr>
+          </thead>
+      </table>
+  </div>
+    <!--div class="col-8 m-auto pt-4 pb-2 text-center">
+        <--img src="http://maps.googleapis.com/maps/api/staticmap?center=LAT, LONG&zoom=11&size=250x250">
+    </div-->
+  </div>
+</div>
+</body>
+</html>

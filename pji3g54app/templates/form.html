@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastramento</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<div class="container-fluid col-12">
+  <div class="jumbotron">
+    <div class="col-8 m-auto pt-3 pb-3 text-center">
+        <h1>CADASTRO DE PJ / PF</h1>
+    </div>
+
+    <div class="col-8 m-auto pt-3 pb-3 text-center">
+        <a href="/" class="btn btn-info">VOLTAR</a>
+    </div>
+
+    <div class="col-12 m-auto pt-3 pb-3 text-center">
+        <!-- {{form.as_p}} linha para testar a exibição do formulario-->
+        <div id="result">
+        <form class="form" id="form" action="{% if db %}/update/{{db.id}}/{% else %}/create/{% endif %}" method="post">
+            {% csrf_token %} <!-- comando do Django para garantir proteção ao formulário-->
+
+            <div class="form-group mt-4">
+                <input type="radio" id="restaurante" name="inputTipo" value="True">
+                <label for="restaurante">Restaurante ou Similar</label><br>
+                <input type="radio" id="cooperativa" name="inputTipo" value="False">
+                <label for="cooperativa">Reciclador ou Similar</label>
+            </div>
+            <div class="form-group text-center">
+            <div><label>Razão Social: </label> {{form.inputEmpresa}}</div>
+            <div><label> CNPJ: </label> {{form.inputCNPJ}}</div>
+            <div><label> Email: </label> {{form.inputEmail}}</div>
+            <div><label>Telefone:</label> {{form.inputTel}}</div>
+            <div><label>Celular:</label> {{form.inputCel}}</div>
+            <div><label>Endereço:</label> {{form.inputAddress}}</div>
+            <div><label>Número:</label> {{form.inputNumber}}</div>
+            <div><label>Complemento:</label> {{form.inputAddress2}}</div>
+            <div><label>CEP:</label> {{form.inputCEP}}</div>
+            <div><label>Cidade:</label> {{form.inputCity}}</div>
+            <div><label>Estado:</label> {{form.inputEstado}}</div>
+
+            <input type="submit" class="btn btn-success" , value="SALVAR">
+            </div>
+        </form>
+        </div>
+    </div>
+
+    {% load static %}
+    {% block scripts %}
+    <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'javascript.js' %}"></script>
+    <script src="{% static 'jquery.mask.min.js' %}"></script>
+
+    <script>
+        $(document).ready(function(){
+        $("#id_inputCEP").mask('00000-000');
+        $("#id_inputTel").mask('(00)0000-0000');
+        $("#id_inputCel").mask('(00)00000-0000');
+        $('#id_inputCNPJ').mask('00.000.000/0000-00', {reverse: true});
+        })
+    </script>
+
+    {% endblock %}
+  </div>
+</div>
+</body>
+</html>
