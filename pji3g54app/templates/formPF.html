@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cadastramento PJ</title>
+    <title>Cadastramento PF</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -16,7 +16,7 @@
 <div class="container-fluid col-12">
   <div class="jumbotron">
     <div class="col-8 m-auto pt-3 pb-3 text-center">
-        <h1>CADASTRO DE PJ</h1>
+        <h1>CADASTRO DE PESSOA FÍSICA</h1>
     </div>
 
     <div class="col-8 m-auto pt-3 pb-3 text-center">
@@ -26,29 +26,24 @@
     <div class="col-12 m-auto pt-3 pb-3 text-center">
         <!-- {{form.as_p}} linha para testar a exibição do formulario-->
         <div id="result">
-        <form class="form" id="form" action="{% if db %}/update/{{db.id}}/{% else %}/create/{% endif %}" method="post">
+        <form class="form" id="formPF" action="{% if db %}/update/{{db.id}}/{% else %}/create/{% endif %}" method="post">
             {% csrf_token %} <!-- comando do Django para garantir proteção ao formulário-->
 
-            <div class="form-group mt-4">
-                <input type="radio" id="restaurante" name="inputTipo" value="True">
-                <label for="restaurante">Restaurante ou Similar</label><br>
-                <input type="radio" id="cooperativa" name="inputTipo" value="False">
-                <label for="cooperativa">Reciclador ou Similar</label>
-                <input type="hidden" id="inputPF" name="inputPF" value="False">
-            </div>
             <div class="form-group text-center">
-            <div><label>Razão Social: </label> {{form.inputEmpresa}}</div>
-            <div><label> CNPJ:        </label> {{form.inputCNPJ}}</div>
-            <div><label> Email:       </label> {{form.inputEmail}}</div>
-            <div><label>Telefone:     </label> {{form.inputTel}}</div>
-            <div><label>Celular:      </label> {{form.inputCel}}</div>
-            <div><label>Endereço:     </label> {{form.inputAddress}}</div>
-            <div><label>Número:       </label> {{form.inputNumber}}</div>
-            <div><label>Complemento:  </label> {{form.inputAddress2}}</div>
-            <div><label>CEP:          </label> {{form.inputCEP}}</div>
-            <div><label>Cidade:       </label> {{form.inputCity}}</div>
-            <div><label>Estado:       </label> {{form.inputEstado}}</div>
+            <div><label>Nome:</label> {{formpf.inputNome}}</div>
+            <div><label>CPF:</label> {{formpf.inputCPF}}</div>
+            <div><label>Email:</label> {{formpf.inputEmail}}</div>
+            <div><label>Telefone:</label> {{formpf.inputTel}}</div>
+            <div><label>Celular:</label> {{formpf.inputCel}}</div>
+            <div><label>Endereço:</label> {{formpf.inputAddress}}</div>
+            <div><label>Número:</label> {{formpf.inputNumber}}</div>
+            <div><label>Complemento:</label> {{formpf.inputAddress2}}</div>
+            <div><label>CEP:</label> {{formpf.inputCEP}}</div>
+            <div><label>Cidade:</label> {{formpf.inputCity}}</div>
+            <div><label>Estado:</label> {{formpf.inputEstado}}</div>
 
+            <input type="hidden" id="inputPF" name="inputPF" value="True">
+            <input type="hidden" id="reciclador" name="inputTipo" value="Null">
             <input type="submit" class="btn btn-success" value="SALVAR">
             </div>
         </form>
@@ -66,7 +61,7 @@
         $("#id_inputCEP").mask('00000-000');
         $("#id_inputTel").mask('(00)0000-0000');
         $("#id_inputCel").mask('(00)00000-0000');
-        $('#id_inputCNPJ').mask('00.000.000/0000-00', {reverse: true});
+        $('#id_inputCPF').mask('000.000.000-00', {reverse: true});
         })
     </script>
 

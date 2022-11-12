@@ -15,15 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from pji3g54app.views import home, form, create, view, edit, update, delete
+from pji3g54app.views import (home, index, form, formpf, create, view, edit, update, delete, create_user,
+                              store_user, vmoleo, painel, dologin, dologout, dashboard)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
+    path('index/', index, name='index'),
     path('form/', form, name='form'),
+    path('formpf/', formpf, name='formpf'),
     path('create/', create, name='create'),
     path('view/<int:pk>/', view, name='view'),
     path('edit/<int:pk>/', edit, name='edit'),
     path('update/<int:pk>/', update, name='update'),
-    path('delete/<int:pk>/', delete, name='delete')
+    path('delete/<int:pk>/', delete, name='delete'),
+    path('create_user/', create_user, name='create_user'),
+    path('store_user/', store_user, name='store_user'),
+    path('vmoleo/<str:inputCEP>', vmoleo, name='vmoleo'),
+    path('painel/', painel, name='painel'),
+    path('dologin/', dologin, name='dologin'),
+    path('dologout/', dologout, name='dologout'),
+    path('dashboard/', dashboard, name='dashboard'),
 ]

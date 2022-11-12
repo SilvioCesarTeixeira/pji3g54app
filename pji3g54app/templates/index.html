@@ -10,20 +10,29 @@
 
 </head>
 <body>
+{% block content %}
+
+    {% if request.user.is_authenticated %}
 <div class="container-fluid col-12">
   <div class="jumbotron">
     <div class="col-10 m-auto pb-3 text-center">
         <h2>CADASTRO DE PRODUTORES E RECICLADORES DE ÓLEO COMESTÍVEL USADO</h2>
-        <h3>Página de Consulta de Estabelecimentos</h3></div>
+        <h3>Página de Consulta</h3></div>
       <div class="m-auto pt-4 pb-4 text-center ">
-        <h4>Clique em CADASTRAR para inserir um novo estabelecimento</h4>
+        <h4>Clique em CADASTRAR Pessoa Jurídica ou Pessoa Física</h4>
     </div>
     <div class="col-8 m-auto pt-3 pb-3 text-center">
-        <a href="/form" class="btn btn-success">CADASTRAR</a> <!-- clicando em ADICIONAR, chama a página 'form' -->
+        <td>
+            <a href="/form" class="btn btn-success">CADASTRAR PJ</a> <!-- clicando em ADICIONAR, chama a página 'form' -->
+            <a href="/formpf" class="btn btn-success">CADASTRAR PF</a>
+            <a href="/dologout" class="btn btn-danger">SAIR DO SISTEMA</a>
+        </td>
     </div>
     <div>
         <form method="get">
-            <div class="container-fluid col-10 pt-4 pb-3 text-center"><h2>Faça a busca por estabelecimento e por município</h2></div>
+            <div class="container-fluid col-10 pt-4 pb-3 text-center">
+                <h2>Faça a busca por tipo de estabelecimento ou por município</h2>
+            </div>
             <div class=" container-fluid col-3 m-auto text-left">
             <input type="radio" id="produtor" name="inputTipo" value="True">
             <label for="produtor">Busca Restaurantes e Similares</label><br>
@@ -43,9 +52,9 @@
           <thead class="thead-light">
             <tr>
               <!--<th scope="col">ID</th>-->
-                <th scope="col"><label>Estabelecimento</label></th>
-              <th scope="col"><label>Endereço</label></th>
-              <th scope="col"><label>Número</label></th>
+              <th scope="col"><label>Estabelecimento</label></th>
+              <th scope="col"><label>Nome</label></th>
+              <th scope="col"><label>PF</label></th>
               <th scope="col"><label>Cidade</label></th>
               <th scope="col"><label>Estado</label></th>
               <th scope="col"><label>Ações</label></th>
@@ -57,8 +66,8 @@
                 <!--Os nomes das variáveis são exatamente os mesmos que estão no Banco de Dados, p ex.: dbs.Req_nome -->
                 <!--<th>{{dbs.id}}</th>--> <!--Esta variável 'id' vem do Banco de Dados - no caso, SQlite-->
                 <td>{{dbs.inputEmpresa}}</td>
-                <td>{{dbs.inputAddress}}</td>
-                <td>{{dbs.inputNumber}}</td>
+                <td>{{dbs.inputNome}}</td>
+                <td>{{dbs.inputPF}}</td>
                 <td>{{dbs.inputCity}}</td>
                 <td>{{dbs.inputEstado}}</td>
                 <td>
@@ -90,5 +99,11 @@
     <script src="{% static 'javascript.js' %}"></script>
   </div>
 </div>
+{% else %}
+<div class="col-8 m-auto pt-3 pb-3 text-center">
+    <h1>Acesso Não Permitido</h1>
+</div>
+{% endif %}
+{% endblock %}
 </body>
 </html>

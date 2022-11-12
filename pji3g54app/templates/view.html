@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% extends 'main.html' %}
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +10,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+{% block content %}
+
+    {% if request.user.is_authenticated %}
 <div class="container col-12">
   <div class="jumbotron">
 <div class="col-8 m-auto pt-2 pb-2 text-center">
@@ -16,23 +20,34 @@
   </div>
 
   <div class="col-8 m-auto pt-3 pb-2 text-center">
-      <a href="/" class="btn btn-info">Voltar</a>
+      <a href="/index" class="btn btn-info">Voltar</a>
   </div>
 
-  <div class="col-12 m-auto pt-4 pb-2 text-center">
-      <table class="table table-striped">
+  <div class="table-responsive col-12 m-auto pt-4 pb-2 text-center">
+      <table class="table table-borderless table-hover">
           <thead class="thead-light">
-          <tr>
-              <td>
-                  <strong>ID: </strong>{{db.id}}</td>
+          <h4>Dados Cadastrais:</h4>
+            <tbody>
+            <tr>
               <td>
                   <strong>Estabelecimento: </strong>{{db.inputEmpresa}}</td>
               <td>
                   <strong>CNPJ: </strong>{{db.inputCNPJ}}</td>
+            </tr>
+            </tbody>
+
+          </thead>
+      </table>
+  </div>
+<div class="table-responsive col-12 m-auto pt-4 pb-2 text-center">
+     <table class="table table-borderless table-hover">
+       <thead class="thead-light">
+          <tr>
+              <h4>Dados de Contato:</h4>
+              <td>
+                  <strong>Nome: </strong>{{db.inputNome}}</td>
               <td>
                   <strong>Email: </strong>{{db.inputEmail}}</td>
-          </tr>
-          <tr>
               <td>
                   <strong>Telefone: </strong>{{db.inputTel}}</td>
               <td>
@@ -54,13 +69,19 @@
               <td>
                   <strong>Estado: </strong>{{db.inputEstado}}<br></td>
           </tr>
-          </thead>
-      </table>
-  </div>
-    <!--div class="col-8 m-auto pt-4 pb-2 text-center">
-        <--img src="http://maps.googleapis.com/maps/api/staticmap?center=LAT, LONG&zoom=11&size=250x250">
-    </div-->
+       </thead>
+     </table>
+</div>
+    <div class="col-8 m-auto pt-4 pb-2 text-center">
+        <a href="/vmoleo/{{db.inputCEP}}" class="btn btn-info">Localização</a>
+    </div>
   </div>
 </div>
+{% else %}
+<div class="col-8 m-auto pt-3 pb-3 text-center">
+    <h1>Acesso Não Permitido</h1>
+</div>
+{% endif %}
+{% endblock %}
 </body>
 </html>

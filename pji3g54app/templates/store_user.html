@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block content %}
+        <div class="col-6 mt-4 m-auto">
+            {% if msg %}
+                <div class="alert {{class}}">
+                    {{msg}}
+                </div>
+            {% endif %}
+
+            <div class="col-8 m-auto pt-3 pb-3 text-center">
+                <a href="/" class="btn btn-info">VOLTAR</a>
+            </div>
+
+        </div>
+    {% endblock %}

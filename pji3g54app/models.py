@@ -1,9 +1,13 @@
 from django.db import models
 
 # Create your models here.
+
+
 class Cadastro(models.Model):
     inputEmpresa = models.CharField(max_length=255, null=True, blank=True)
     inputCNPJ = models.CharField(max_length=18, null=True, blank=True)
+    inputNome = models.CharField(max_length=255, null=True, blank=True)
+    inputCPF = models.CharField(max_length=14, null=True, blank=True)
     inputEmail = models.EmailField(max_length=100, null=True, blank=True)
     inputTel = models.CharField(max_length=13, null=True, blank=True)
     inputCel = models.CharField(max_length=14, null=True, blank=True)
@@ -14,4 +18,7 @@ class Cadastro(models.Model):
     inputCity = models.CharField(max_length=50, null=True, blank=True)
     inputEstado = models.CharField(max_length=20, null=True, blank=True)
     inputTipo = models.BooleanField(null=None, blank=None)
+    inputPF = models.BooleanField(null=None, blank=None, default=False)
 
+    def __str__(self):
+        return f'{self.inputPF}'
