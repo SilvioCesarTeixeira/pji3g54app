@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from decouple import config, Csv
-import django_heroku
+import django_on_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,14 +79,14 @@ WSGI_APPLICATION = 'PJI3.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        #'ENGINE': 'django.db.backends.mysql',
-        #'NAME': config('NAME'),
-        #'PORT': config('PORT'),
-        #'USER': config('USER'),
-        #'PASSWORD': config('PASSWORD'),
-        #'HOST': config('HOST'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('NAME'),
+        'PORT': config('PORT'),
+        'USER': config('USER'),
+        'PASSWORD': config('PASSWORD'),
+        'HOST': config('HOST'),
         #'OPTIONS': {
         #    'init_command': 'SET default_storage_engine=InnoDB',
         #}
@@ -131,7 +131,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIR = '/static/'
-django_heroku.settings(locals())
+django_on_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
