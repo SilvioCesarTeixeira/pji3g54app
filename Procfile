@@ -1,1 +1,1 @@
-web: gunicorn PJI3.wsgi
+web: gunicorn PJI3.asgi
